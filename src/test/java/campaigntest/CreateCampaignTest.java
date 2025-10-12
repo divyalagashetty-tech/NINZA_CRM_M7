@@ -163,6 +163,7 @@ public class CreateCampaignTest extends BaseClass {
 		else
 			System.out.println("Campaign Not Created");
 		hp.getCloseToastMsg().click();
+		System.out.println("Createcampaignwithstatus");
 
 		// logout
 		//hp.logout();
