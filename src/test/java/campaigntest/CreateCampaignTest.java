@@ -15,6 +15,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -31,7 +32,7 @@ import objectrepository.LoginPage;
 @Listeners(genericutility.ListnerImplementation.class)
 public class CreateCampaignTest extends BaseClass {
 
-	@Test(groups = {"smoke","regression"})
+	@Test(groups = "smoke")
 	public void CreateCampaignWithMandatoryFieldsTest() throws InterruptedException, IOException {
 
 		//PropertyFileUtility pLib = new PropertyFileUtility();
@@ -42,6 +43,7 @@ public class CreateCampaignTest extends BaseClass {
 
 		// Reading data from excel file
 		//ExcelFileUtility eLib = new ExcelFileUtility();
+		ExcelFileUtility eLib = new ExcelFileUtility();
 		String CAMPAIGN_NAME = eLib.readDataFromExcelFile("Campaign", 1, 2);
 		String TARGET_SIZE = eLib.readDataFromExcelFile("Campaign", 1, 3);
   
@@ -69,29 +71,50 @@ public class CreateCampaignTest extends BaseClass {
 		// Login to Ninza_CRM
 		//LoginPage lp = new LoginPage(driver);
 		//lp.loginToApp(USERNAME, PASSWORD,URL);
+		
+		JavaUtility jLib = new JavaUtility();
+		int randomInt = jLib.getRandomNumber();
+		String campaignName = CAMPAIGN_NAME + randomInt;
+		
+		Webdriverutility wLib = new Webdriverutility();
+		 Homepage hp1 = new Homepage(driver);
+		CampaignsPage campaignPage = new
+		CampaignsPage(driver);
 
 		// Create Campaign with Mandatory Fields
-		CampaignsPage cp = new CampaignsPage(driver);
-		cp.getAddCreateCampaignBtn().click();
+		//CampaignsPage cp = new CampaignsPage(driver);
+		//cp.getAddCreateCampaignBtn().click();
 		
-		createcampaignpage ccp=new createcampaignpage(driver);
-		ccp.getCampaignNameTF().sendKeys(CAMPAIGN_NAME);
-		ccp.getTargetSizeTF().clear();
-		ccp.getTargetSizeTF().sendKeys(TARGET_SIZE);
-		ccp.getCreateCampaignBtn().click();
+		// Create Campaign
+		campaignPage.createCampaign(campaignName,
+		TARGET_SIZE);
+		campaignPage.getCreateCampaignSubmitBtn().click();
+		
+		//createcampaignpage ccp=new createcampaignpage(driver);
+		//ccp.getCampaignNameTF().sendKeys(CAMPAIGN_NAME);
+		//ccp.getTargetSizeTF().clear();
+		//ccp.getTargetSizeTF().sendKeys(TARGET_SIZE);
+		//ccp.getCreateCampaignBtn().click();
 
 		// Validation
-		Homepage hp= new Homepage(driver);
-		wLib.waitUntilElementToBeVisible(driver, hp.getToastmsg());
-		if (hp.getToastmsg().getText().contains(CAMPAIGN_NAME))
-			System.out.println("Campaign Created");
-		else
-			System.out.println("Campaign Not Created");
-		hp.getCloseToastMsg().click();
-		System.out.println("From new workspace");
+		wLib.waitForVisibilityOfWebElement(driver,
+		hp1.getToastmsg());
+		String msg = hp1.getToastmsg().getText();
+		Assert.assertEquals( msg,"Campaign"+campaignName+"Successfully Added");
+		hp1.getCloseToastMsg().click();
+		
+		// Validation
+		//Homepage hp1= new Homepage(driver);
+		//wLib.waitUntilElementToBeVisible(driver, hp1.getToastmsg());
+		//if (hp1.getToastmsg().getText().contains(CAMPAIGN_NAME))
+			//System.out.println("Campaign Created");
+		//else
+			//System.out.println("Campaign Not Created");
+		//hp1.getCloseToastMsg().click();
+		//System.out.println("From new workspace");
 
 		// Logout
-		////hp.logout();
+		//hp.logout();
 
 		// Close the browser
 		//driver.quit();

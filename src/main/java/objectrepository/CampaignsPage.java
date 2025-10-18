@@ -20,4 +20,14 @@ WebDriver driver;
 	public WebElement getAddCreateCampaignBtn() {
 		return addCreateCampaignBtn;
 	}
+
+	public void createCampaign(String campaignName, String tARGET_SIZE) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public WebElement getCreateCampaignSubmitBtn() {
+		// TODO Auto-generated method stub
+		return addCreateCampaignBtn;
+	}
 }

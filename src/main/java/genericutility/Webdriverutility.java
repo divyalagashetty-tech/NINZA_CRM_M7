@@ -137,4 +137,9 @@ public class Webdriverutility {
 			
 		
 	}
+
+		public void waitForVisibilityOfWebElement(WebDriver driver, WebElement toastmsg) {
+			// TODO Auto-generated method stub
+			
+		}
 }

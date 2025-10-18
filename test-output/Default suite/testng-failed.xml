@@ -10,9 +10,9 @@
           <include name="afterMethod"/>
           <include name="beforeTest"/>
           <include name="afterSuite"/>
-          <include name="CreateCampaignWithStatus"/>
           <include name="beforeClass"/>
           <include name="beforeMethod"/>
+          <include name="CreateCampaignWithMandatoryFieldsTest"/>
           <include name="afterTest"/>
         </methods>
       </class> <!-- campaigntest.CreateCampaignTest -->

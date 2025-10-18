@@ -3,6 +3,7 @@ package genericutility;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 public class JavaUtility {
 
@@ -24,5 +25,11 @@ public class JavaUtility {
 		String date = d.toString().replace(" ","_").replace(":","_");
 		
 		return date;
+	
+	}
+
+	public int getRandomNumber() {
+		Random r = new Random();
+		return r.nextInt(1000);
 	}
 }

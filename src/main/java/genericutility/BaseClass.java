@@ -34,14 +34,14 @@ public class BaseClass {
   @BeforeMethod(groups = { "smoke", "regression" })
   public void beforeMethod() throws IOException {
 	  System.out.println("Login");
-	  //String browser = pLib.readDataFromPropertyFile("Browser");
-	  //String url = pLib.readDataFromPropertyFile("URL");
-	  //String username = pLib.readDataFromPropertyFile("Username");
-	  //String password = pLib.readDataFromPropertyFile("Password"); 
+	  String browser = pLib.readDataFromPropertyFile("Browser");
+	  String url = pLib.readDataFromPropertyFile("URL");
+	  String username = pLib.readDataFromPropertyFile("Username");
+	  String password = pLib.readDataFromPropertyFile("Password"); 
 	  
-	  String url = System.getProperty("URL");
-	  String username = System.getProperty("USERNAME");
-	  String password = System.getProperty("PASSWORD");
+	  //String url = System.getProperty("URL");
+	  //String username = System.getProperty("USERNAME");
+	  //String password = System.getProperty("PASSWORD");
 	  
 	  LoginPage lp = new LoginPage(driver);
 	  lp.loginToApp(username, password, url);
@@ -59,8 +59,8 @@ public class BaseClass {
   @BeforeClass(groups = { "smoke", "regression" })
   public void beforeClass() throws IOException {
 	  System.out.println("Launch the browser");
-	 //String BROWSER = pLib.readDataFromPropertyFile("Browser");
-		String BROWSER = System.getProperty("Browser");	 
+	 String BROWSER = pLib.readDataFromPropertyFile("Browser");
+		//String BROWSER = System.getProperty("Browser");	 
 				
 				if (BROWSER.equalsIgnoreCase("edge"))
 			driver = new EdgeDriver();

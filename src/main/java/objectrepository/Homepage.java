@@ -32,7 +32,7 @@ public class Homepage {
 			private WebElement logoutBtn;
 			
 			@FindBy(xpath="//div[@role='alert']")
-			private WebElement toastmsg;
+			private WebElement Toastmsg;
 			
 			@FindBy(xpath="//button[@aria-label='close']")
 			private WebElement closeToastMsg;
@@ -54,7 +54,7 @@ public class Homepage {
 			}
 
 			public WebElement getToastmsg() {
-				return toastmsg;
+				return Toastmsg;
 			}
 
 			public WebElement getCloseToastMsg() {
