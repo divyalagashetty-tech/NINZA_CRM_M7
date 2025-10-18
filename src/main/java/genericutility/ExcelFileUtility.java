@@ -11,7 +11,7 @@ public class ExcelFileUtility {
 
 	public String readDataFromExcelFile(String sheetName,int rowNum,int cellNum) throws EncryptedDocumentException, IOException {
 		
-		FileInputStream fis=new FileInputStream("C:\\Users\\div31\\OneDrive\\Desktop\\NinzaCRM_M9 (1).xlsx");
+		FileInputStream fis=new FileInputStream("./src/test/resources/NinzaCRM_M7.xlsx");
 		Workbook wb = WorkbookFactory.create(fis);
 		String value = wb.getSheet(sheetName).getRow(rowNum).
 				getCell(cellNum).getStringCellValue();
@@ -22,7 +22,7 @@ public class ExcelFileUtility {
 	
 	public int getRowCount(String sheetName) throws EncryptedDocumentException, IOException {
 		
-		FileInputStream fis=new FileInputStream("C:\\Users\\div31\\OneDrive\\Desktop\\NinzaCRM_M9 (1).xlsx");
+		FileInputStream fis=new FileInputStream("./src/test/resources/NinzaCRM_M7.xlsx");
 		Workbook wb = WorkbookFactory.create(fis);
 		int rowCount = wb.getSheet(sheetName).getLastRowNum();
 		
